@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<h1>WYSZUKIWANIE DZIAŁKI EWIDENCYJNEJ</h1>
+
+<!--        FORM               -->
+<form action='' method='POST' novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.search_query.label }}<br>
+    {{ form.search_query(size=32) }}
+  </p>
+  <p>
+    {{ form.submit() }}
+  </p>
+<!--        FORM                -->
+
+{% endblock %}
