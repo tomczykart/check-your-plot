@@ -9,6 +9,9 @@
   <p>
     {{ form.search_query.label }}<br>
     {{ form.search_query(size=32) }}
+    {% for error in form.search_query.errors %}
+    <span style='color:red;'>[{{ error }}]</span>
+    {% endfor %}
   </p>
   <p>
     {{ form.submit() }}
