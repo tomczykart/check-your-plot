@@ -1,1 +1,2 @@
 FLASK_APP=plotter.py
+FLASK_DEBUG=1

@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email
 from app.models import User, SearchQuery
 
 class SearchForm(FlaskForm):
-    search_query = StringField('Plot id number', validators=[DataRequired()])
+    search_query = StringField('Plot id number:', validators=[DataRequired()])
     submit = SubmitField('Search')
 
 class SendResultsForm(FlaskForm):

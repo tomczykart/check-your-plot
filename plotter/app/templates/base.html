@@ -8,6 +8,7 @@
 
     </head>
     <body>
+      <main>
           <!--        NAVIGATION BAR                -->
           <div class="container">
             <header class="d-flex justify-content-center py-3">
@@ -21,37 +22,42 @@
           </div>
           <!--        NAVIGATION BAR                -->
 
-          <p4>Find your plot and get all the information you need</p4>
-
-          <!--        FORM        <div class="mb-3">        -->
-          <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Plot id number:</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">it looks like this: 146506_8.0207.77/12</div>
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-          </form>
-          <!--        FORM                -->
-
-          {% block content %}{% endblock%}
-
-          <!--        FLASH ERROR                -->
-          <div class=container>
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-          <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          {% endwith %}
+          <!--        MAIN TITLE                -->
+          <div class="px-4 py-3 my-2 text-center">
+            <br>
+              <h1 class='display-3 fw-bold text-primary'>Find your plot and get all the information you need</h1>
           </div>
-          <!--        FLASH ERROR                -->
+          <!--        MAIN TITLE                -->
 
-          <!--        BOOTSTRAP JAVASCRIPT                -->
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-          <!--        BOOTSTRAP JAVASCRIPT                -->
+          <!--        MAIN BODY                -->
+          <div class="px-4 py-3 my-2 text-center">
+
+              <!--        PAGES CONTENT              -->
+              {% block content %}{% endblock%}
+              <!--        PAGES CONTENT              -->
+
+              <!--        FLASH ERROR                -->
+              <div class=container>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% endwith %}
+              </div>
+              <!--        FLASH ERROR                -->
+              
+          </div>
+          <!--        MAIN BODY                -->
+
+      </main>
+
+      <!--        BOOTSTRAP JAVASCRIPT                -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+      <!--        BOOTSTRAP JAVASCRIPT                -->
+
     </body>
 </html>
