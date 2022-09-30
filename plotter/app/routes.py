@@ -3,7 +3,7 @@ from flask_login import current_user, login_user
 from app import app, db
 from app.forms import SearchForm, SendResultsForm
 from app.models import User, SearchQuery
-from app.get_data import get_wkt
+from app.get_data import get_coordinates
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -42,8 +42,8 @@ def results():
         flash(f'Sending results to {form.user_email}')
         #send email
         return redirect(url_for('index'))
-    
-    plot_wkt = get_wkt(session['query'],'4326')
+
+    plot_wkt = get_coordinates(session['query'],'4326')
     #plot_wkt = get_wkt('141201_1.0001.1867/2','4326')
 
     return render_template('results.html', title ='RESULTS', form=form, plot_wkt=plot_wkt)

@@ -5,9 +5,19 @@
 
 <!--        MAIN BODY               -->
 <div class='container'>
-<p>{{ plot_wkt }}</p>
-<p>{{ plot_wkt.text }}</p>
+<p></p>
 <div>
+
+  <!--        COORDINATES                -->
+  <div class="container">
+      <ul class="">
+        <li>Współrzędne geograficzne narożników działki:</li>
+        {% for point in plot_wkt %}
+        <li class="">{{ point }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+  <!--        COORDINATES                -->
 
 
 <!--        MAIN BODY               -->
