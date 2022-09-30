@@ -11,7 +11,7 @@
       <main>
           <!--        NAVIGATION BAR                -->
           <div class="container">
-            <header class="d-flex justify-content-center py-3">
+            <header class="d-flex justify-content-center py-5">
               <ul class="nav nav-pills">
                 <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link active" aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="{{ url_for('how') }}" class="nav-link">Features</a></li>
@@ -23,7 +23,7 @@
           <!--        NAVIGATION BAR                -->
 
           <!--        MAIN TITLE                -->
-          <div class="px-4 py-3 my-2 text-center">
+          <div class="px-4 py-1 my-2 text-center">
             <br>
               <h1 class='display-3 fw-bold text-primary'>Find your plot and get all the information you need</h1>
           </div>
@@ -35,22 +35,23 @@
               <!--        PAGES CONTENT              -->
               {% block content %}{% endblock%}
               <!--        PAGES CONTENT              -->
-
-              <!--        FLASH ERROR                -->
-              <div class=container>
-              {% with messages = get_flashed_messages() %}
-              {% if messages %}
-              <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-              </ul>
-              {% endif %}
-              {% endwith %}
-              </div>
-              <!--        FLASH ERROR                -->
-              
           </div>
+
+          <!--        FLASH ERROR                -->
+          <div class=container>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+          </div>
+          <!--        FLASH ERROR                -->
+
+
           <!--        MAIN BODY                -->
 
       </main>

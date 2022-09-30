@@ -1,8 +1,9 @@
-from flask import render_template, flash, redirect, url_for, g
+from flask import render_template, flash, redirect, url_for, session, request
 from flask_login import current_user, login_user
 from app import app, db
 from app.forms import SearchForm, SendResultsForm
 from app.models import User, SearchQuery
+from app.get_data import get_wkt
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -11,7 +12,7 @@ def index():
     #logic for search form submit
     form = SearchForm()
     if form.validate_on_submit():
-        #flash(f'Searching for plot{form.search_query}')
+        session['query'] = request.form.get('search_query')
         #add unknown user with new search query to db
         #get data from external api
         return redirect(url_for('results'))
@@ -41,4 +42,8 @@ def results():
         flash(f'Sending results to {form.user_email}')
         #send email
         return redirect(url_for('index'))
-    return render_template('results.html', title = 'RESULTS', form = form)
+    
+    plot_wkt = get_wkt(session['query'],'4326')
+    #plot_wkt = get_wkt('141201_1.0001.1867/2','4326')
+
+    return render_template('results.html', title ='RESULTS', form=form, plot_wkt=plot_wkt)
