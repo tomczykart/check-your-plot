@@ -8,10 +8,17 @@
 <p></p>
 <div>
 
+  <!--        MAP                -->
+<div class="container">
+  <img src={{ map_png }} alt='mapa działki ewidencyjnej' class='img-fluid'>
+</div>
+  <!--        MAP                -->
+
+
   <!--        COORDINATES                -->
   <div class="container">
       <ul class="">
-        <li>Współrzędne geograficzne narożników działki:</li>
+        <li>Współrzędne geograficzne punktów granicy działki:</li>
         {% for point in plot_wkt %}
         <li class="">{{ point }}</li>
         {% endfor %}

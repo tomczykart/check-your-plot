@@ -3,7 +3,7 @@ from flask_login import current_user, login_user
 from app import app, db
 from app.forms import SearchForm, SendResultsForm
 from app.models import User, SearchQuery
-from app.get_data import get_coordinates
+from app.get_data import get_coordinates, generate_map
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -20,6 +20,22 @@ def index():
     return render_template('index.html', title = 'HOME', form = form)
 
 
+
+@app.route('/results', methods=['GET', 'POST'])
+def results():
+    form = SendResultsForm()
+    if form.validate_on_submit():
+        flash(f'Sending results to {form.user_email}')
+        #send email
+        return redirect(url_for('index'))
+
+    plot_wkt = get_coordinates(session['query'],'4326')
+    #plot_wkt = get_wkt('141201_1.0001.1867/2','4326')
+    map_png = generate_map(session['query'],'2180')
+
+    return render_template('results.html', title ='RESULTS', form=form, plot_wkt=plot_wkt, map_png=map_png)
+
+
 @app.route('/about')
 def about():
     return render_template('about.html', title = 'ABOUT')
@@ -33,17 +49,3 @@ def how():
 @app.route('/faqs')
 def faqs():
     return render_template('faqs.html', title = 'FAQs')
-
-
-@app.route('/results', methods=['GET', 'POST'])
-def results():
-    form = SendResultsForm()
-    if form.validate_on_submit():
-        flash(f'Sending results to {form.user_email}')
-        #send email
-        return redirect(url_for('index'))
-
-    plot_wkt = get_coordinates(session['query'],'4326')
-    #plot_wkt = get_wkt('141201_1.0001.1867/2','4326')
-
-    return render_template('results.html', title ='RESULTS', form=form, plot_wkt=plot_wkt)
