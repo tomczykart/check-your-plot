@@ -10,21 +10,41 @@
 
   <!--        MAP                -->
 <div class="container">
-  <img src={{ map_png }} alt='mapa działki ewidencyjnej' class='img-fluid'>
+  <img src={{ map_png }} alt='mapa działki ewidencyjnej' class='img-fluid py-5'>
 </div>
   <!--        MAP                -->
 
 
-  <!--        COORDINATES                -->
-  <div class="container">
-      <ul class="">
-        <li>Współrzędne geograficzne punktów granicy działki:</li>
-        {% for point in plot_wkt %}
-        <li class="">{{ point }}</li>
-        {% endfor %}
-      </ul>
+  <!--        COORDINATES + DATA                -->
+  <div class="container text-center">
+    <ul class="list-group">
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p>Współrzędne geograficzne punktów granicy działki:</p>
+        </div>
+        <div class='col-md-8'>
+          {% for point in plot_wkt %}
+          <li class="list-group-item">{{ point }}</li>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p>Współrzędne geograficzne punktów granicy działki:</p>
+        </div>
+        <div class='col-md-8'>
+          {% for point in plot_wkt %}
+          <li class="list-group-item">{{ point }}</li>
+          {% endfor %}
+        </div>
+      </div>
+
+
+    </ul>
   </div>
-  <!--        COORDINATES                -->
+  <!--        COORDINATES + DATA               -->
 
 
 <!--        MAIN BODY               -->
