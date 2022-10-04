@@ -1,7 +1,7 @@
 import requests
 import shapely.wkt
 import shapely.geometry
-
+import xmltodict
 
 #plot_id=141201_1.0001.1867/2
 #srid 2180 for area
@@ -26,12 +26,11 @@ def get_coordinates(plot_id, srid):
     coordinates = [tuple(reversed(a.split(' '))) for a in list]
     return coordinates
 
-#get data for plot
-
-def plot_data(plot_id, srid):
+#get xml with plot information
+def plot_data_xml(plot_id, srid):
     #calculate data from coordinates
     polygon = build_polygon(plot_id, srid)
-    area = polygon.area
+    #area = polygon.area
     point = polygon.representative_point()#point within the shape
     point_x = point.x
     point_y = point.y
@@ -63,11 +62,36 @@ def plot_data(plot_id, srid):
                     '''
     request_url = request_url.replace('\n','')
     request_url = request_url.replace(' ','') #request link is ready
+    #print(request_url)
     response = requests.get(request_url)
-    print(response)
+    return response #xml file
 
-plot_data('141201_1.0001.1867/2', '2180')
-#create map view from WMS web map service
+def plot_area(plot_id, srid):
+    #calculate data from coordinates
+    polygon = build_polygon(plot_id, srid)
+    area = polygon.area
+    area = round(area, 2)
+    return area
+
+def parse_xml(plot_id, srid):
+    xml = plot_data_xml(plot_id, srid).content
+    #print(xml)
+    data = xmltodict.parse(xml)
+    #print(data.keys())
+    a = data['FeatureCollection']['gml:featureMember']['Layer']['Attribute']#list of dictionaries
+    #create a dict parameter:value from dict list
+    plot_parameters = {}
+    for dict in a:
+        try:
+            key = dict['@Name']
+            value = dict['#text']
+            plot_parameters[key] = value
+        except KeyError:
+            plot_parameters[key] = 'brak danych'
+            continue
+    return plot_parameters
+
+
 def generate_map(plot_id, srid):
     polygon = build_polygon(plot_id, srid)
     minx, miny, maxx, maxy = polygon.bounds #tuple of floats(minx, miny, maxx, maxy)

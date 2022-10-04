@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {% block content%}
 
-<h1>RESULTS</h1>
+<h3 class='text-left px-5 mt-3 text-primary'>SEARCH RESULTS</h3>
 
 <!--        MAIN BODY               -->
 <div class='container'>
@@ -21,18 +21,88 @@
 
       <div class='row'>
         <div class='col-md-4'>
-          <p>Współrzędne geograficzne punktów granicy działki:</p>
+          <p><b>Identyfikator działki</b></p>
         </div>
         <div class='col-md-8'>
-          {% for point in plot_wkt %}
-          <li class="list-group-item">{{ point }}</li>
-          {% endfor %}
+          <li class="list-group-item">{{ plot_parameters['Identyfikator działki'] }}</li>
         </div>
       </div>
 
       <div class='row'>
         <div class='col-md-4'>
-          <p>Współrzędne geograficzne punktów granicy działki:</p>
+          <p><b>Województwo</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Województwo'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Powiat</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Powiat'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Gmina</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Gmina'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Obręb</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Obręb'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Numer działki</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Numer działki'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Pole powierzchni z ewidencji gruntów(ha)</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Pole pow. w ewidencji gruntów (ha)'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Pole powierzchni obliczeniowe(m2)</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ area }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Oznaczenie użytku</b></p>
+        </div>
+        <div class='col-md-8'>
+          <li class="list-group-item">{{ plot_parameters['Oznaczenie użytku'] }}</li>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-4'>
+          <p><b>Współrzędne geograficzne punktów granicy działki</b></p>
         </div>
         <div class='col-md-8'>
           {% for point in plot_wkt %}
@@ -49,21 +119,6 @@
 
 <!--        MAIN BODY               -->
 
-
-<!--        FORM               -->
-<form action='' method='POST' novalidate>
-  {{ form.hidden_tag() }}
-  <p>
-    {{ form.user_email.label }}<br>
-    {{ form.user_email(size=32) }}
-    {% for error in form.user_email.errors %}
-    <span style='color:red;'>[{{ error }}]</span>
-    {% endfor %}
-  </p>
-  <p>
-    {{ form.submit() }}
-  </p>
-<!--        FORM                -->
 
 
 {% endblock %}

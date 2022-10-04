@@ -3,7 +3,7 @@ from flask_login import current_user, login_user
 from app import app, db
 from app.forms import SearchForm, SendResultsForm
 from app.models import User, SearchQuery
-from app.get_data import get_coordinates, generate_map
+from app.get_data import get_coordinates, generate_map, plot_area, parse_xml
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -30,10 +30,22 @@ def results():
         return redirect(url_for('index'))
 
     plot_wkt = get_coordinates(session['query'],'4326')
-    #plot_wkt = get_wkt('141201_1.0001.1867/2','4326')
+    #generate plot border coordinates
     map_png = generate_map(session['query'],'2180')
+    #ask api for plot map
+    plot_parameters = parse_xml(session['query'],'2180')
+    #ask api for plot parameters
+    area = plot_area(session['query'],'2180')
+    #calculate plot area
 
-    return render_template('results.html', title ='RESULTS', form=form, plot_wkt=plot_wkt, map_png=map_png)
+    return render_template('results.html',
+                            title ='RESULTS',
+                            form=form,
+                            plot_wkt=plot_wkt,
+                            map_png=map_png,
+                            plot_parameters=plot_parameters,
+                            area=area
+                            )
 
 
 @app.route('/about')
