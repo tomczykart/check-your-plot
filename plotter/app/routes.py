@@ -23,24 +23,30 @@ def index():
 @app.route('/results', methods=['GET', 'POST'])
 def results():
 
-    plot_wkt = get_coordinates(session['query'],'4326')
-    #generate plot border coordinates
-    map_png = generate_map(session['query'],'2180')
+    try:
+        plot_wkt = get_coordinates(session['query'],'4326')
+        #generate plot border coordinates
+        map_png = generate_map(session['query'],'2180')
 
-    #ask api for plot map
-    plot_parameters = parse_xml(session['query'],'2180')
-    #ask api for plot parameters
-    area = plot_area(session['query'],'2180')
-    #calculate plot area
+        #ask api for plot map
+        plot_parameters = parse_xml(session['query'],'2180')
+        #ask api for plot parameters
+        area = plot_area(session['query'],'2180')
+        #calculate plot area
+
+        return render_template('results.html',
+                                title ='RESULTS',
+                                plot_wkt=plot_wkt,
+                                map_png=map_png,
+                                plot_parameters=plot_parameters,
+                                area=area
+                                )
+    except ValueError:
+        flash('Wyszukiwanie zakończone niepowodzeniem')
+        return redirect(url_for('index'))
+        
 
 
-    return render_template('results.html',
-                            title ='RESULTS',
-                            plot_wkt=plot_wkt,
-                            map_png=map_png,
-                            plot_parameters=plot_parameters,
-                            area=area
-                            )
 
 
 @app.route('/about')

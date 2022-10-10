@@ -9,7 +9,9 @@ import xmltodict
 def get_wkt(plot_id, srid):
         url = f'https://uldk.gugik.gov.pl/?request=GetParcelById&id={plot_id}&result=geom_wkt&srid={srid}'
         response = requests.get(url)
-        return response
+        if response.text[0] == '0':
+            return response
+        else: raise ValueError
 
 #create shapely object - polygon
 def build_polygon(response):
@@ -122,3 +124,7 @@ def generate_map(plot_id, srid):
     request_url = request_url.replace(' ','')
 
     return request_url
+
+if __name__ == '__main__':
+    a = get_wkt('141201_1.0001.1867/2','4326')
+    print(f'Server is working fine: {a}')
