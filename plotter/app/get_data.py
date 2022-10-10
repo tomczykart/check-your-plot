@@ -12,9 +12,9 @@ def get_wkt(plot_id, srid):
         return response
 
 #create shapely object - polygon
-def build_polygon(plot_id, srid):
+def build_polygon(response):
     #seperate srid and wkt from response
-    wkt = get_wkt(plot_id, srid).text.split(';')[1]
+    wkt = response.text.split(';')[1]
     polygon = shapely.wkt.loads(wkt)
     return polygon
 
@@ -29,7 +29,8 @@ def get_coordinates(plot_id, srid):
 #get xml with plot information
 def plot_data_xml(plot_id, srid):
     #calculate data from coordinates
-    polygon = build_polygon(plot_id, srid)
+    response = get_wkt(plot_id, srid)
+    polygon = build_polygon(response)
     #area = polygon.area
     point = polygon.representative_point()#point within the shape
     point_x = point.x
@@ -68,7 +69,8 @@ def plot_data_xml(plot_id, srid):
 
 def plot_area(plot_id, srid):
     #calculate data from coordinates
-    polygon = build_polygon(plot_id, srid)
+    response = get_wkt(plot_id, srid)
+    polygon = build_polygon(response)
     area = polygon.area
     area = round(area, 2)
     return area
@@ -93,7 +95,8 @@ def parse_xml(plot_id, srid):
 
 
 def generate_map(plot_id, srid):
-    polygon = build_polygon(plot_id, srid)
+    response = get_wkt(plot_id, srid)
+    polygon = build_polygon(response)
     minx, miny, maxx, maxy = polygon.bounds #tuple of floats(minx, miny, maxx, maxy)
     map_bounds = (minx-15, miny-15, maxx+15, maxy+15) #add margin around the plot
 

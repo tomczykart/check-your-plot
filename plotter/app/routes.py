@@ -1,7 +1,6 @@
 from flask import render_template, flash, redirect, url_for, session, request
-from flask_login import current_user, login_user
 from app import app, db
-from app.forms import SearchForm, SendResultsForm
+from app.forms import SearchForm
 from app.models import User, SearchQuery
 from app.get_data import get_coordinates, generate_map, plot_area, parse_xml
 
@@ -13,7 +12,7 @@ def index():
     form = SearchForm()
     if form.validate_on_submit():
         session['query'] = request.form.get('search_query')
-        #add unknown user with new search query to db
+
         #get data from external api
         return redirect(url_for('results'))
     #render index page
@@ -23,24 +22,20 @@ def index():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-    form = SendResultsForm()
-    if form.validate_on_submit():
-        flash(f'Sending results to {form.user_email}')
-        #send email
-        return redirect(url_for('index'))
 
     plot_wkt = get_coordinates(session['query'],'4326')
     #generate plot border coordinates
     map_png = generate_map(session['query'],'2180')
+
     #ask api for plot map
     plot_parameters = parse_xml(session['query'],'2180')
     #ask api for plot parameters
     area = plot_area(session['query'],'2180')
     #calculate plot area
 
+
     return render_template('results.html',
                             title ='RESULTS',
-                            form=form,
                             plot_wkt=plot_wkt,
                             map_png=map_png,
                             plot_parameters=plot_parameters,
