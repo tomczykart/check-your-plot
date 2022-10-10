@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+plotter/venv/
+plotter/__pycache__
+plotter/app/__pycache__
+ulkd_info.txt
+data-tests.ipynb
+plotter/app/sketch.py
