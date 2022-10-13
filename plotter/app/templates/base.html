@@ -6,9 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
       <main>
+      <!--        MAIN BODY                -->
 
           <!--        NAVIGATION BAR                -->
           <nav class="navbar navbar-expand-lg py-3 bg-light">
@@ -53,8 +55,8 @@
 
 
           <!--        MAIN BODY                -->
+          <section>
           <div class="px-4 py-3 my-2">
-
               <!--        PAGES CONTENT              -->
               {% block content %}{% endblock%}
               <!--        PAGES CONTENT              -->
@@ -62,21 +64,40 @@
 
           <!--        FLASH ERROR                -->
           <div class='container text-center'>
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <small class='form-text text-muted'>[{{ message }}]</small>
-            {% endfor %}
-          {% endif %}
-          {% endwith %}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <small class='form-text text-muted'>[{{ message }}]</small>
+              {% endfor %}
+            {% endif %}
+            {% endwith %}
           </div>
           <!--        FLASH ERROR                -->
+          </section>
+
+          <!--        footer                     -->
+          <footer class="footer-top mt-4 text-center">
+            <div class='container'>
+              <div class='row justify-content-center'>
+                <div class='col-2'>
+                  <p class="text-center">designed in 2022</p>
+                </div>
+              </div>
+              <div class='row justify-content-center'>
+                <div class='col-1'>
+                  <a href="https://github.com/tomczykart" target="_blank"><i class='bx bxl-github bx-sm'></i></a>
+                </div>
+                <div class='col-1'>
+                  <a href="https://www.linkedin.com/in/artur-tomczyk-1b2367a6/" target="_blank"><i class='bx bxl-linkedin-square bx-sm' ></i></a>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!--        footer                     -->
 
 
 
-
-          <!--        MAIN BODY                -->
-
+      <!--        MAIN BODY                -->
       </main>
 
       <!--        BOOTSTRAP JAVASCRIPT                -->

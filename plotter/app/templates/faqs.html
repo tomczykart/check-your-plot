@@ -1,2 +1,29 @@
 {% extends 'base.html'%}
-{% block content%}<h1>FAQs</h1>{% endblock %}
+{% block content%}
+
+<h4  class='display-9 fw-bold text-center'>FAQs</h4>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 mx-auto text-center">
+      <h4 class="display-9">Where do i get this plot id number?</h4>
+      <p class="py-4">
+        In Polish language it is called "Numer identyfikacyjny działki ewidencyjnej". If you have any documents about your plot, it should be there somewhere.
+        Otherwise, you can always go for geoportal <a href="https://www.geoportal.gov.pl/">https://www.geoportal.gov.pl/</a> and into "Geoportal Krajowy". Track your plot manually,
+        and click on it. And now, if you click on the first tab in the popup window, you will get the number.
+      </p>
+      <h4 class="display-9">Why should I use this side if everything is in the geoportal?</h4>
+      <p class="py-4">
+         Most of the information you can find on this page is in geoportal. However, you can get that information way quicker here, and
+         the crucial difference is the area of the plot. Geoportal has hidden that information since 24.08.2020.
+      </p>
+      <h4 class="display-9">I need more info. Where can I find it?</h4>
+      <p class="py-4">
+        I suggest you start looking for local map services of the city office. Not all of the information is aviable to the government global database.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

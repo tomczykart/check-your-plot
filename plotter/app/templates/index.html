@@ -3,7 +3,7 @@
 
 <div>
 <br>
-<h4  class='display-9 fw-bold text-black text-center'>Search for plot</h4>
+<h4  class='display-9 fw-bold text-center'>Search for plot</h4>
 </div>
 
 <!--        FORM               -->
@@ -24,10 +24,9 @@
       {% endfor %}
     </div>
 
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
-        <br>
-        {{ form.submit(class_='btn btn-outline-dark btn-lg px-4 gap-3') }}
-      </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-5">
+      {{ form.submit(class_='btn btn-outline-dark btn-lg px-4 gap-3') }}
+    </div>
 
   </div>
 <!--        FORM                -->

@@ -3,12 +3,34 @@
 
 
 
-<div>
-<br>
-<h4  class='display-9 fw-bold text-black text-center'>Search for plot</h4>
+<div><h4  class='display-9 fw-bold text-center'>How it's done</h4></div>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-8 mx-auto text-center">
+      <p class="py-4">
+        This website is designed with a python framework called Flask. It also uses Bootstrap for page layout
+        and the Boxicons service for icons, Google fonts and Unsplash for images.
+      </p>
+      <p class="py-4">
+        Search engine uses two separate services to gather information about the plot you searched for.
+        The first one is called "ULKD" <a href="https://uldk.gugik.gov.pl/" target="_blank">https://uldk.gugik.gov.pl/</a>
+         for "usługa lokalizacji działek kastralnych" and it's an API for gathering plot
+        information such as position of plot's borders coordinates.
+      </p>
+      <p class="py-4">
+        The other service is a WMS <a href="https://integracja.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow" target="_blank">https://integracja.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow</a>
+         service, which lets me download the crop of the map in the location you searched for.
+      </p>
+
+      <p class="py-4">
+        For some reason, information about plot area in some regions of Poland is restricted, but information about plot geometry is not.
+        This was the reason why I created the app in the first place - to let you quickly check the area, whether you are an architect, urban planner,
+        developer, or simply just curious.
+      </p>
+    </div>
+  </div>
 </div>
-
-
 
 
 

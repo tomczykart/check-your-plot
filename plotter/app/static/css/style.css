@@ -14,9 +14,14 @@ body {
   color: var(--body)
 }
 
-h1,h2,h3,h4,h5,h6,
+h1,
 .display-4 {
   color: var(--white);
+}
+
+h2,h3,h4,h5,h6,
+.display-9 {
+  color: var(--dark);
 }
 
 a {
@@ -27,6 +32,10 @@ text-decoration: none;
 
 .navbar .nav-link {
   fonr-size: 0.7;
+}
+
+.navitem a:hover {
+  color: var(--dark);
 }
 
 .hero {
@@ -48,5 +57,24 @@ text-decoration: none;
   left: 0;
   background-color: rgba(245, 245, 245, 0.3);
   z-index: -1;
+}
 
+section {
+padding-top: 80px;
+padding-bottom: 80px;
+}
+
+
+.footer-top {
+  background-color: var(--dark);
+  padding-bottom: 90px;
+  padding: 90px;
+}
+
+.footer-top a {
+  color: var(--body)
+}
+
+.footer-top a:hover {
+  color: var(--white)
 }
